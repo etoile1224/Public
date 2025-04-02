@@ -32,7 +32,7 @@ def export_to_pdf(data):
         pdf.set_font("Arial", size=12)
 
     for index, row in data.iterrows():
-        pdf.cell(0, 10, txt=f"\ud83d\udcda 독서 목표: {row['reading_goal']}", ln=True)
+        pdf.cell(0, 10, txt=f"독서 목표: {row['reading_goal']}", ln=True)
         pdf.cell(0, 10, txt=f"제목: {row['book_title']}", ln=True)
         pdf.cell(0, 10, txt=f"저자: {row['author']}", ln=True)
         pdf.cell(0, 10, txt=f"리뷰: {row['review']}", ln=True)
