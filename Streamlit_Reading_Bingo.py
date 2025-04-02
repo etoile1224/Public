@@ -19,10 +19,17 @@ def save_data(data):
 
 # PDF 출력 함수
 def export_to_pdf(data):
+    BASE_DIR = os.path.dirname(__file__)
+    FONT_PATH = os.path.join(BASE_DIR, "NanumGothic.ttf")
     pdf = FPDF()
     pdf.add_page()
-    pdf.add_font("ArialUnicode", '', fname="./NanumGothic.ttf", uni=True)
-    pdf.set_font("ArialUnicode", size=12)
+
+    try:
+        pdf.add_font("NanumGothic", "", FONT_PATH, uni=True)
+        pdf.set_font("NanumGothic", size=12)
+    except Exception as e:
+        st.warning(f"폰트 오류로 기본 폰트 사용함: {e}")
+        pdf.set_font("Arial", size=12)
 
     for index, row in data.iterrows():
         pdf.cell(0, 10, txt=f"\ud83d\udcda 독서 목표: {row['reading_goal']}", ln=True)
